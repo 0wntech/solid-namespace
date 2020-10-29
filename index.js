@@ -1,3 +1,5 @@
+const path = require("path");
+
 /**
  * Provides a way to access commonly used namespaces
  *
@@ -59,11 +61,14 @@ const aliases = {
 /**
  * @param [rdflib] {RDF} Optional RDF Library (such as rdflib.js or rdf-ext) to inject
  */
-function vocab(rdf = { namedNode: (u) => u }, pathToCustomNS = process.env.CUSTOM_NAMESPACES_PATH) {
+function vocab(
+  rdf = { namedNode: (u) => u },
+  pathToCustomNS = process.env.CUSTOM_NAMESPACES_PATH
+) {
   const namespaces = {};
   let allAliases = {};
   if (pathToCustomNS) {
-    const customns = require(pathToCustomNS);
+    const customns = require(path.resolve(process.cwd(), pathToCustomNS));
     allAliases = { ...aliases, ...customns };
   } else {
     allAliases = aliases;
