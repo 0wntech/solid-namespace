@@ -59,7 +59,7 @@ const aliases = {
 /**
  * @param [rdflib] {RDF} Optional RDF Library (such as rdflib.js or rdf-ext) to inject
  */
-function vocab(rdf = { namedNode: (u) => u }, pathToCustomNS) {
+function vocab(rdf = { namedNode: (u) => u }, pathToCustomNS = process.env.CUSTOM_NAMESPACES_PATH) {
   const namespaces = {};
   let allAliases = {};
   if (pathToCustomNS) {

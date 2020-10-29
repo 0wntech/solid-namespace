@@ -14,3 +14,7 @@ assert.equal(rdfns.schema("Recipe"), "RDF::http://schema.org/Recipe");
 //Test custom namespace functionality
 const customns = require("./index.js")(rdflib, './testns.json');
 assert.equal(customns.example("Recipe"), "RDF::https://example.com/Recipe");
+
+//Test custom namespace functionality with path from dotenv
+const customDotns = require("./index.js")(rdflib);
+assert.equal(customDotns.example("Recipe"), "RDF::https://example.com/Recipe");
