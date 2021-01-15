@@ -1,5 +1,3 @@
-const path = require("path");
-
 /**
  * Provides a way to access commonly used namespaces
  *
@@ -67,8 +65,8 @@ function vocab(
 ) {
   const namespaces = {};
   let allAliases = {};
-  if (pathToCustomNS) {
-    const customns = require(path.resolve(process.cwd(), pathToCustomNS));
+  const customns = pathToCustomNS ? eval("require")(pathToCustomNS) : false;
+  if (customns) {
     allAliases = { ...aliases, ...customns };
   } else {
     allAliases = aliases;
